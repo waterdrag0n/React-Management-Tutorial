@@ -1,4 +1,6 @@
-## Management System - for React Tutorial
+## Management System
+
+[Reactjs + nodejs + mySQL]
 
 Reference: https://ndb796.tistory.com/211
 
