@@ -1,8 +1,6 @@
 ## Management System
 
-[Reactjs + nodejs + mySQL]
-
-Reference: https://ndb796.tistory.com/211
+React.js, Node.js, MySQL
 
 # Getting Started with Create React App
 
