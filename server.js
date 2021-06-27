@@ -1,39 +1,31 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//import bodyParser;
+const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+const conf = JSON.parse(fs.readFileSync('./database.json'));
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  port: conf.port,
+  database: conf.database
+});
+connection.connect();
+
 app.get('/api/customers', (req, res)=>{
-    res.send([
-        {
-          'id':1,
-          'image':'https://placeimg.com/64/64/1',
-          'name':'A',
-          'birthday':'123456',
-          'gender':'남자',
-          'job':'개발자'
-        },
-        {
-          'id':2,
-          'image':'https://placeimg.com/64/64/2',
-          'name':'B',
-          'birthday':'234567',
-          'gender':'여자',
-          'job':'대학생'
-        },
-        {
-          'id':3,
-          'image':'https://placeimg.com/64/64/3',
-          'name':'C',
-          'birthday':'345678',
-          'gender':'남자',
-          'job':'백수'
-        }
-      ]);
+    connection.query(
+      "SELECT * FROM CUSTOMER",
+      (err, rows, fields)=>{
+        res.send(rows);
+      }
+    )
 });
 
 app.listen(port, ()=>console.log(`Listening on port ${port}`));
