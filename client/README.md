@@ -1,6 +1,7 @@
 ## Management System
+Simple Management System using [React.js, Node.js, MySQL]
 
-React.js, Node.js, MySQL
+<a src="https://ndb796.tistory.com/211">Reference: 안경잡이개발자</a>
 
 # Getting Started with Create React App
 
